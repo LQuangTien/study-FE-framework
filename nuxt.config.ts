@@ -5,14 +5,16 @@ export default defineNuxtConfig({
     head: {
       link: [
         {
-          rel: "stylesheet",
-          href: "https://fonts.googleapis.com/css?family=Muli",
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css?family=Muli',
         },
-      ]
-    }
+      ],
+    },
   },
-  css: [
-    './assets/global.css',
-    './assets/variables.css',
-  ],
-})
+  css: ['./assets/global.css', './assets/variables.css'],
+  extends: ['@nuxt/ui-pro'],
+  modules: ['@nuxt/ui'],
+  typescript: {
+    typeCheck: true,
+  },
+});

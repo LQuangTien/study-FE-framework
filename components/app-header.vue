@@ -1,41 +1,62 @@
+<script setup lang="ts">
+import type { NavigationLink } from '#ui-pro/types';
+
+const links: NavigationLink[] = [
+  {
+    label: 'Home',
+    to: '/',
+  },
+  {
+    label: 'Find a doctor',
+    to: '/find-a-doctor',
+  },
+  {
+    label: 'Apps',
+    to: '/apps',
+  },
+  {
+    label: 'Testimonials',
+    to: '/testimonials',
+  },
+  {
+    label: 'About us',
+    to: '/about',
+  },
+];
+
+const ui = {
+  container: 'w-full max-w-full',
+};
+
+</script>
 <template>
-  <header class="header">
-    <img src="/logo.jpg" alt="Logo" class="header__logo" />
-    <nav>
-      <ul class="header__links">
-        <li><nuxt-link to="/" class="header__link header__link_active">Home</nuxt-link></li>
-        <li><nuxt-link to="/" class="header__link">Find a doctor</nuxt-link></li>
-        <li><nuxt-link to="/" class="header__link">Apps</nuxt-link></li>
-        <li><nuxt-link to="/" class="header__link">Testimonials</nuxt-link></li>
-        <li><nuxt-link to="/about" class="header__link">About Us</nuxt-link></li>
-      </ul>
-    </nav>
-  </header>
+  <UHeader :links="links" :ui="ui" class="header">
+    <template #logo>
+      <img src="/logo.jpg" alt="Logo" class="header__logo" />
+    </template>
+
+    <template #panel>
+      <UNavigationTree :links="links" class="header__navigation" />
+    </template>
+  </UHeader>
 </template>
 <style scoped>
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-content: center;
-  padding: 10px 0;
+  border: none;
+}
+
+.header,
+.header__navigation {
+  --color-primary-DEFAULT: var(--primary-font-color);
+  color: var(--primary-font-light-color);
+}
+
+.header :deep(.text-primary),
+.header__navigation :deep(.text-primary) {
+  color: var(--primary-font-color);
 }
 
 .header__logo {
   object-fit: contain;
-}
-
-.header__links {
-  list-style-type: none;
-  display: flex;
-  gap: 20px;
-}
-
-.header__link {
-  text-decoration: none;
-  color: var(--primary-font-light-color);
-}
-
-.header__link_active {
-  color: var(--primary-font-color);
 }
 </style>
